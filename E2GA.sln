@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E2GA", "E2GA\E2GA.csproj", "{94C7A284-EFE3-4694-9B8E-9170C4D5750E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSPGA", "TSPGA\TSPGA.csproj", "{F6703F00-6985-446D-9EFD-A4A03CBA6FD0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{94C7A284-EFE3-4694-9B8E-9170C4D5750E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94C7A284-EFE3-4694-9B8E-9170C4D5750E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94C7A284-EFE3-4694-9B8E-9170C4D5750E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94C7A284-EFE3-4694-9B8E-9170C4D5750E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6703F00-6985-446D-9EFD-A4A03CBA6FD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6703F00-6985-446D-9EFD-A4A03CBA6FD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6703F00-6985-446D-9EFD-A4A03CBA6FD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6703F00-6985-446D-9EFD-A4A03CBA6FD0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
