@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace E2GA
 {
     public class Tile
@@ -23,6 +25,22 @@ namespace E2GA
             if (symbols == rot180) return true;
             if (symbols == rot270) return true;
             return false;
+        }
+
+        public int SymbolMatches(string symbols)
+        {
+            var symbolmatchcount = 0;
+            var hs = symbols.ToHashSet();
+            foreach (var c in original)
+            {
+                if (hs.Contains(c))
+                {
+                    hs.Remove(c);
+                    symbolmatchcount++;
+                }
+            }
+
+            return symbolmatchcount;
         }
     }
 }

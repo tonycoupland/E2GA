@@ -50,10 +50,10 @@ namespace E2GA
             var crossover = new GeneticSharp.Domain.Crossovers.OnePointCrossover();
             var mutation = new GeneticSharp.Domain.Mutations.PartialShuffleMutation();
             var selection = new GeneticSharp.Domain.Selections.RouletteWheelSelection();
-            var population = new GeneticSharp.Domain.Populations.Population(7500, 10000, chromosome);
+            var population = new GeneticSharp.Domain.Populations.Population(5000, 10000, chromosome);
        
             ga = new GeneticAlgorithm(population, fitness, selection, crossover, mutation);
-            ga.MutationProbability = 0.3f;
+            ga.MutationProbability = 0.1f;
             ga.Termination = new GeneticSharp.Domain.Terminations.FitnessThresholdTermination(1.0);
 
             // The fitness evaluation of whole population will be running on parallel.

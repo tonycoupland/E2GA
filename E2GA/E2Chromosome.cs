@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
 using System.Text;
 using GeneticSharp.Domain.Chromosomes;
 using GeneticSharp.Domain.Randomizations;
+using GeneticSharp.Infrastructure.Framework.Collections;
 
 namespace E2GA
 {
@@ -80,7 +82,7 @@ namespace E2GA
             bool shortLine = true;
             int i = 0;
             int tileIndex = 0;
-            var tileMatches = includeMatches ? MatchedTiles().ToHashSet() : null;
+            var tileMatches = includeMatches ? GetMatchedTiles().ToHashSet() : null;
             while (i < NumberOfSymbols)
             {
                 if (shortLine)sb.Append(" ");
@@ -131,7 +133,7 @@ namespace E2GA
             }
         }
 
-        public IEnumerable<int> MatchedTiles()
+        public IEnumerable<int> GetMatchedTiles()
         {            
             // Cut tiles from chromosome
             var cutTiles = E2Chromosome.CutTiles(this);
@@ -155,7 +157,50 @@ namespace E2GA
 
                 tileIndex++;
             }
+        }
+        
+        public (int,double) GetMatchedTileScore()
+        {            
+            // Cut tiles from chromosome
+            var cutTiles = E2Chromosome.CutTiles(this).ToList();
+            
+            // Create a copy of the real tiles for us to work with
+            var comp = Tiles.ToList();
+            var score = 0.0;
+            var tileMatches = 0;
 
+            foreach (var tile in cutTiles)
+            {
+                // Walk our own list of all the real tiles...
+                for (var n = 0; n < comp.Count; n++)
+                {
+                    if (comp[n].Matches(tile))
+                    {
+                        score++;
+                        tileMatches++;
+                        comp.RemoveAt(n);
+                        break;
+                    }
+                }
+            }
+
+            // Walk the list again and look for partial matches
+            new int[] {4, 3}.Each(threshold =>
+            {
+                foreach (var tile in cutTiles)
+                {
+                    for (var n = 0; n < comp.Count; n++)
+                    {
+                        if (comp[n].SymbolMatches(tile) == threshold)
+                        {
+                            score += ((double) threshold / 24.0);
+                            comp.RemoveAt(n);
+                            break;
+                        }
+                    }
+                }
+            });
+            return (tileMatches, score);
         }
     }
 }
